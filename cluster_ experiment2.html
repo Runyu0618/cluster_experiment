@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My experiment</title>
+    <script src="https://unpkg.com/jspsych@8.2.1"></script>
+    <script src="js/jspsych-audio-tokens-v7.js"></script>
+    <script src="js/audio-tokens.js"></script>
+    <script src="//d3js.org/d3.v4.min.js"></script>
+    <link href="https://unpkg.com/jspsych@8.2.1/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-instructions@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey@2.1.0"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@2.1.0/css/survey.css">
+</head>
+<body>
+<img src="UoG.jpeg" alt="UoG Logo" style="position:absolute; top:50px; left:10px; max-width:150px;" />
+      <div style="margin-left:180px;">
+</body>
+
+<script>
+    // ADDED: Information Letter page
+    var information_letter = {
+        type: jsPsychInstructions,
+   pages: [
+`<div style="max-width:800px; margin:auto; text-align:left;">
+<h2 style="text-align:center">Information Letter</h2>
+<h3 style="text-align:center">Perception of Similarity Between English Accents for Chinese Learners of English</h3>
+<p><strong>Researcher:</strong> Runyu Wu<br/>
+Center for Language and Cognition<br/>
+University of Groningen<br/>
+Email: runyu.wu@rug.nl</p>
+
+<h3>Introduction</h3>
+<p>This information letter contains important information about this study and corresponding rules. Please read this letter carefully and ask any questions, before agreeing upon participation.</p>
+
+<h3>WHAT IS THIS STUDY ABOUT?</h3>
+<h4>Purpose</h4>
+<p>The purpose of this study is to investigate how Chinese learners of English perceive the similarity and dissimilarity of different English accents. In this preliminary research, we aim to understand which accents are perceived as sounding alike or different. This will inform a larger PhD project and contribute to a better understanding of how accent perception relates to intelligibility.</p>
+
+<h4>Nature and Duration of the Study</h4>
+<p>Participation involves listening to a series of 20 short audio recordings (approximately 20–30 seconds each). You will be asked to drag and drop the audio tokens into groups based on how similar you perceive the accents to be. You can create as many or as few groups as you like, and each group can contain any number of recordings. The whole survey will take about 10–15 minutes.</p>
+
+<h3>WHAT DOES PARTICIPATION IN THIS STUDY INVOLVE?</h3>
+<h4>Contents</h4>
+<ul>
+<li>Listen to various English accents</li>
+<li>Sort the audio samples into groups based on perceived similarity</li>
+<li>Please make sure to wear headphones throughout the experiment and try to do the survey on computer</li>
+</ul>
+
+<h4>Potential Negative Consequences of Participation</h4>
+<p>There are no anticipated risks to participation. If you feel any discomfort at any point, you may stop your participation at any time before submitting the questionnaire.</p>
+
+<h3>Participation Information</h3>
+<h4>Voluntariness of Participation</h4>
+<p>Participation in this study is entirely voluntary. You have the right to choose not to participate or to withdraw at any time before submitting the questionnaire, without any negative consequences or the need to provide a reason.</p>
+
+<h3>WHAT RIGHTS DO I HAVE?</h3>
+<h4>Right to Access, Correct, or Delete Data</h4>
+<p>You have the right to access, correct, or delete your personal data at any point before submitting the questionnaire. For more information, please refer to the University’s data privacy policy at <a href="https://www.rug.nl/privacy" target="_blank">www.rug.nl/privacy</a>.</p>
+
+<h3>Confidentiality</h3>
+<p>All information collected during this study will be handled with the utmost confidentiality. While we will collect certain demographic details such as gender and age for research purposes, your responses will be fully anonymized. Your personal information will only be used for the purposes of this research and will not be shared without your explicit written permission.</p>
+
+<h3>Research Data Management Policy</h3>
+<p>The fully anonymized research data will be securely stored for a period of 10 years, accessible only to the researchers involved in this study. When the results are published or presented at conferences, no information will be shared that can identify you personally. The collected demographic details will remain fully anonymized and will only be used for data analysis. Additionally, anonymized data from this study may be made available for future research, but this will not include any information that could reveal your identity.</p>
+
+<h3>Data Processing</h3>
+<p>Your responses will be recorded, anonymized, and used solely for the purposes of this research.</p>
+
+<h3>Reward/Reimbursement</h3>
+<p>Participation in this study is voluntary.</p>
+
+<h3>Ethical Approval</h3>
+<p>This study was reviewed by the Research Ethics Review Committee (CETO) of the University of Groningen (enter number here). You can contact CETO at <a href="mailto:ceto@rug.nl">ceto@rug.nl</a>.</p>
+
+<h3>Participation</h3>
+<p>If you decide to participate in this study, you can click "I agree" on the next page.</p>
+</div>`,
+  ],
+    button_label_next: "Continue",
+    button_label_previous: "Return to the dark side",
+        show_clickable_nav: true
+    };
+
+    // Information Letter 完成后
+var consent_form = {
+  type: jsPsychSurveyMultiChoice,
+  preamble: `
+    <div style="max-width:800px; margin:auto; text-align:left;">
+      <h2 style="text-align:center">Consent</h2>
+      <p>By accepting this informed consent form, you voluntarily agree to participate in this study. Accepting this form does not interfere with your right to withdraw from this study at any time without an explanation.</p>
+      <p>By signing this informed consent form, I (the participant) confirm that I have read and understood the entire information letter and confirm that:</p>
+      <ul>
+        <li>I have read and understood the entire information letter that belongs to this study.</li>
+        <li>I have been given the opportunity to contact the researcher to ask questions about the study.</li>
+        <li>I had sufficient time to decide whether I would participate or not.</li>
+        <li>I know that participation is completely voluntary.</li>
+        <li>I know that the duration of the study is 10-15 mins.</li>
+        <li>I know I can decide to withdraw from the study at any time before submitting the questionnaire, without any negative consequences and without providing any explanation.</li>
+        <li>I know that my research data will be processed as described in the information letter and only the researcher team have access to this data.</li>
+        <li>I give permission to use my research data for the purposes that are mentioned in the information letter that belongs to this study.</li>
+        <li>I give permission to store my research data for the period of 10 years.</li>
+      </ul>
+      <p>By selecting "I agree," you consent to participate in this study.</p>
+    </div>
+  `,
+  questions: [
+    {
+      prompt: "Please select one of the following:", 
+      name: "consent",
+      options: ["I agree", "I DO NOT agree"],
+      required: true
+    }
+  ],
+  on_finish: function(data) {
+    var response = data.response.consent;
+    if (response === "I DO NOT agree") {
+      alert("You have selected 'I DO NOT agree'. The experiment will now end.");
+      jsPsych.endExperiment();
+    }
+  }
+};
+
+// demographic_survey
+
+const demographic_survey = {
+  type: jsPsychSurvey,
+  survey_json: {
+    showQuestionNumbers: false,
+    pageNextText: 'Continue',
+    pagePrevText: 'Previous',
+    pages: [
+        
+      /* —— Page 1 —— 学生、年龄、性别 */
+      {
+        name: 'page1',
+        elements: [
+            {
+      type: 'html',
+      name: 'logo',
+      html: `
+       <div style="display:flex; align-items:flex-start;">
+      <img src="UoG.jpeg" alt="UoG Logo" style="max-width:150px;" />
+      <div style="margin-left:20px;">
+    `
+    },
+          {
+            type: 'radiogroup',
+            title: "Are you currently a student (e.g. undergraduate, master's, PhD student)?",
+            name: 'student_work',
+            choices: [
+              "Yes, I'm now a student.",
+              "No, I'm now working."
+            ],
+            showOtherItem: true,
+            isRequired: true
+          },
+          {
+            type: 'radiogroup',
+            title: "What is your age?",
+            name: 'age',
+            choices: [
+              "18–20",
+              "21–23",
+              "24–26",
+              "27–29",
+              "30+"
+            ],
+            isRequired: true
+          },
+          {
+            type: 'radiogroup',
+            title: "What is your gender?",
+            name: 'gender',
+            choices: [
+              "Male",
+              "Female",
+              "Non-binary / third gender",
+              "Prefer not to say"
+            ],
+            isRequired: true
+          }
+        ]
+      },
+      /* —— Page 2 —— 学历和英语学习年限 */
+      {
+        name: 'page2',
+        elements: [
+            {
+      type: 'html',
+      name: 'logo',
+      html: `
+       <div style="display:flex; align-items:flex-start;">
+      <img src="UoG.jpeg" alt="UoG Logo" style="max-width:150px;" />
+      <div style="margin-left:20px;">
+    `
+    },
+          {
+            type: 'radiogroup',
+            title: "What is your current level of study?",
+            name: 'level_of_study',
+            choices: [
+              "Undergraduate",
+              "Master/Postgraduate",
+              "PhD/Doctoral"
+            ],
+            showOtherItem: true,
+            isRequired: true
+          },
+          {
+            type: 'text',
+            title: "What is your major?",
+            name: 'major',
+            isRequired: true
+          },
+          {
+            type: 'radiogroup',
+            title: "How long have you been learning English?",
+            name: 'years_of_english',
+            choices: [
+              "Less than 9 years",
+              "9–13 years",
+              "14–17 years",
+              "18 years+"
+            ],
+            showOtherItem: true,
+            isRequired: true
+          }
+        ]
+      },
+      /* —— Page 3 —— 考试类型、分数、是否访问过说英语的国家 */
+      {
+        name: 'page3',
+        elements: [
+            {
+      type: 'html',
+      name: 'logo',
+      html: `
+       <div style="display:flex; align-items:flex-start;">
+      <img src="UoG.jpeg" alt="UoG Logo" style="max-width:150px;" />
+      <div style="margin-left:20px;">
+    `
+    },
+          {
+            type: 'radiogroup',
+            title: "Please provide your English examination score to indicate your English proficiency level. Exam type:",
+            name: 'exam_type',
+            choices: [
+              "IELTS",
+              "TOEFL",
+              "CET-4",
+              "CET-6",
+              "Test for English major–Band 4",
+              "Test for English major–Band 8",
+              "PTE",
+              "National College Entrance Examination"
+            ],
+            showOtherItem: true,
+            isRequired: true
+          },
+          {
+            type: 'text',
+            title: "Score:",
+            name: 'score',
+            isRequired: true
+          },
+          {
+            type: 'radiogroup',
+            title: "Have you ever visited or are you currently in any English-speaking countries?",
+            name: 'englishcountry_if',
+            choices: ["Yes", "No"],
+            isRequired: true
+          },
+          {
+            type: 'text',
+            title: "If you have visited any English-speaking countries, please specify the country, city, and duration of your stay in each location.",
+            name: 'englishcountry_specification',
+            isRequired: true,
+            visibleIf: "{englishcountry_if} = 'Yes'"
+          }
+        ]
+      }
+    ]
+  }
+};
+
+
+
+
+
+
+  
+    // Glasgow + Australia
+    var stimuli1 = [
+  'my_audio/Australia1.wav',
+  'my_audio/glasgow1.wav',
+  'my_audio/India1.wav',
+  'my_audio/Ireland1.wav',
+  'my_audio/Japan1.wav',
+  'my_audio/Manchester1.wav',
+  'my_audio/Mandarin1.wav',
+  'my_audio/Northern Ireland1.wav',
+  'my_audio/NZE1.wav',
+  'my_audio/South Africa1.wav',
+  'my_audio/Australia2.wav',
+  'my_audio/glasgow2.wav',
+  'my_audio/India2.wav',
+  'my_audio/Ireland2.wav',
+  'my_audio/Japan2.wav',
+  'my_audio/Manchester2.wav',
+  'my_audio/Mandarin2.wav',
+  'my_audio/Northern Ireland2.wav',
+  'my_audio/NZE2.wav',
+  'my_audio/South Africa2.wav'
+];
+
+
+    var perceptual_instructions = {
+  type: jsPsychInstructions,
+  pages: [
+    `<div style="max-width:800px; margin:auto; text-align:left;">
+      <h2>Instructions for the Perceptual Similarity Task</h2>
+      <p>You will hear 20 short audio samples representing 10 different accents of English (one dot = one audio sample).</p>
+       <p>The script of each audio smaple is:"Please call Stella.  Ask her to bring these things with her from the store:  
+        Six spoons of fresh snow peas, five thick slabs of blue cheese, and maybe a snack for her brother Bob.  We also need a small plastic snake and a big toy frog for the kids. 
+        She can scoop these things into three red bags, and we will go meet her Wednesday at the train station."</p>
+        <p> What you need to do:</p>
+      <ol>
+        <li><strong>To listen:</strong> Hover your mouse over a dot to play the audio. You can listen to each sample as many times as you like.</li>
+        <li><strong>To group:</strong> Drag and drop the dots that sound similar into the same group.</li>
+      </ol>
+      <p>You can create as many or as few groups as you want, and each group can contain any number of audio samples. The distance between the dots within a group doesn’t matter — as long as they are in the same group, they will be treated as belonging together. Below is an example of how you might group the samples:</p>
+      <div style="text-align:center;">
+        <img src="figure_cluster.png" alt="Example of Grouping" style="max-width:600px;">
+      </div>
+    </div>`,
+  ],
+  show_clickable_nav: true,
+  button_label_next: "Next",
+  button_label_previous: "Previous"
+};
+
+
+    // Trial 1
+    var cluster_trial_1 = {
+    type: jsPsychAudioTokens,
+    ratingtype: 'cluster',
+    stimuli: stimuli1,
+    force_listen: false,
+    loop: true,
+    prompt: `
+      <div style="font-size:14px; line-height:1.0; margin-top:30px;">
+      <p>你觉得哪些口音听起来比较像？请将这些音频按照相似程度拖拽分组。</p>
+      <p>The audio can't be played? Please wait for 1 minute。</p>
+    </div>
+  `
+};
+
+
+    // Timeline
+    var timeline = [
+        information_letter, 
+        consent_form,
+        demographic_survey,
+        perceptual_instructions,
+        cluster_trial_1
+    ];
+
+    // Initialize jsPsych
+    var jsPsych = initJsPsych({
+  show_progress_bar: true,
+  on_finish: function(){
+    document.body.innerHTML = `
+      <h2 style='text-align: center; margin-top: 20%;'>Thank you for your time spent taking this survey.<br/>
+      Your response has been recorded.</h2>
+      <p style='text-align: center; font-size: 1.1em; margin-top: 20px;'>
+        If you have any questions, please contact: <a href="mailto:runyu.wu@rug.nl">runyu.wu@rug.nl</a>
+      </p>
+    `;
+  }
+});
+
+
+    jsPsych.run(timeline);
+</script>
+</html>
+
