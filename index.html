@@ -315,7 +315,14 @@ const demographic_survey = {
   'my_audio/NZE2.wav',
   'my_audio/South Africa2.wav'
 ];
+//pratice audio
 
+ var stimuli2 = [
+    'my_audio备用/English69.wav',
+    'my_audio备用/Leeds1.wav',
+    'my_audio备用/English77.wav',
+    'my_audio备用/Leeds2.wav'
+];
 
     var perceptual_instructions = {
   type: jsPsychInstructions,
@@ -335,6 +342,35 @@ const demographic_survey = {
       <div style="text-align:center;">
         <img src="figure_cluster.png" alt="Example of Grouping" style="max-width:600px;">
       </div>
+    </div>`,
+  ],
+  show_clickable_nav: true,
+  button_label_next: "Next",
+  button_label_previous: "Previous"
+};
+// practice
+
+    var practice = {
+    type: jsPsychAudioTokens,
+    ratingtype: 'cluster',
+    stimuli: stimuli2,
+    force_listen: false,
+    loop: true,
+    prompt: `
+      <div style="font-size:14px; line-height:1.0; margin-top:30px;">
+         <p>This is a practice trial to help you get familiar with the task. Your responses will not be recorded. </p>
+      <p>你觉得哪些口音听起来比较像？请将这些音频按照相似程度拖拽分组。</p>
+      <p>The audio can't be played? Please wait for 1 minute。</p>
+    </div>
+  `
+};
+
+var practice_instructions = {
+  type: jsPsychInstructions,
+  pages: [
+    `<div style="max-width:800px; margin:auto; text-align:justify;">
+      <h2 style="text-align:center">Instructions</h2>
+      <p>The practice item is now complete. The next items are part of the main survey. Please proceed as you did during practice.</p>
     </div>`,
   ],
   show_clickable_nav: true,
@@ -365,9 +401,11 @@ const demographic_survey = {
         consent_form,
         demographic_survey,
         perceptual_instructions,
+        practice,
+        practice_instructions,
         cluster_trial_1
     ];
-
+    
     // Initialize jsPsych
     var jsPsych = initJsPsych({
   show_progress_bar: true,
