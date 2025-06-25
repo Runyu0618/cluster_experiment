@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>My experiment</title>
+    <script src="jatos.js"></script>
     <script src="https://unpkg.com/jspsych@8.2.1"></script>
     <script src="js/jspsych-audio-tokens-v7.js"></script>
     <script src="js/audio-tokens.js"></script>
@@ -19,6 +20,8 @@
 </body>
 
 <script>
+
+
     // ADDED: Information Letter page
     var information_letter = {
         type: jsPsychInstructions,
@@ -175,8 +178,8 @@ const demographic_survey = {
             title: "What is your gender?",
             name: 'gender',
             choices: [
+              "Feale",
               "Male",
-              "Female",
               "Non-binary / third gender",
               "Prefer not to say"
             ],
@@ -315,6 +318,7 @@ const demographic_survey = {
   'my_audio/NZE2.wav',
   'my_audio/South Africa2.wav'
 ];
+
 //pratice audio
 
  var stimuli2 = [
@@ -328,7 +332,7 @@ const demographic_survey = {
   type: jsPsychInstructions,
   pages: [
     `<div style="max-width:800px; margin:auto; text-align:justify;">
-    <h2 style="text-align:center">Instructions for the Perceptual Similarity Task</h2>
+      <h2 style="text-align:center">Instructions for the Perceptual Similarity Task</h2>
       <p>You will hear 20 short audio samples representing 10 different accents of English (one dot = one audio sample).</p>
        <p>The script of each audio smaple is:"Please call Stella.  Ask her to bring these things with her from the store:  
         Six spoons of fresh snow peas, five thick slabs of blue cheese, and maybe a snack for her brother Bob.  We also need a small plastic snake and a big toy frog for the kids. 
@@ -336,7 +340,8 @@ const demographic_survey = {
         <p> What you need to do:</p>
       <ol>
         <li><strong>To listen:</strong> Hover your mouse over a dot to play the audio. You can listen to each sample as many times as you like.</li>
-        <li><strong>To group:</strong> Drag and drop the dots that sound similar into the same group.</li>
+        <li><strong>To group:</strong> Drag and drop the dots that sound similar into the same group. Make sure that a line appears between dots when you drag them — this line means they belong to the same group.
+Please note: after you drop a dot, the line will disappear, but this is normal. It will still be treated as part of the group.</li>
       </ol>
       <p>You can create as many or as few groups as you want, and each group can contain any number of audio samples. The distance between the dots within a group doesn’t matter — as long as they are in the same group, they will be treated as belonging together. Below is an example of how you might group the samples:</p>
       <div style="text-align:center;">
@@ -348,6 +353,7 @@ const demographic_survey = {
   button_label_next: "Next",
   button_label_previous: "Previous"
 };
+
 // practice
 
     var practice = {
@@ -396,7 +402,7 @@ var practice_instructions = {
 
 
     // Timeline
-    var timeline = [
+var timeline = [
         information_letter, 
         consent_form,
         demographic_survey,
@@ -405,11 +411,13 @@ var practice_instructions = {
         practice_instructions,
         cluster_trial_1
     ];
-    
-    // Initialize jsPsych
-    var jsPsych = initJsPsych({
+
+
+
+   var jsPsych = initJsPsych({
   show_progress_bar: true,
   on_finish: function(){
+    // 完成后显示感谢页面
     document.body.innerHTML = `
       <h2 style='text-align: center; margin-top: 20%;'>Thank you for your time spent taking this survey.<br/>
       Your response has been recorded.</h2>
@@ -419,6 +427,12 @@ var practice_instructions = {
     `;
   }
 });
+
+
+
+    jsPsych.run(timeline);
+</script>
+</html>
 
 
     jsPsych.run(timeline);
